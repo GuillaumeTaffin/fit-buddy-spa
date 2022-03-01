@@ -4,4 +4,6 @@ export class User {
 
 export class UserDao extends User {}
 
-export class UserViewModel extends User {}
+export class UserViewModel {
+	constructor(readonly authenticated: boolean, readonly id: string) {}
+}

@@ -1,40 +1,43 @@
 <script lang='ts'>
-    import Button, {Label} from '@smui/button';
-    import Textfield from '@smui/textfield';
-    import {AuthPresenter} from "./auth.presenter";
+	import Button, { Label } from '@smui/button';
+	import Textfield from '@smui/textfield';
+	import { AuthPresenter } from './auth.presenter';
+	import { getContext } from 'svelte';
+	import { Stores, storesKey } from '../stores';
 
-    const presenter = new AuthPresenter();
+	let stores: Stores = getContext(storesKey);
+	const presenter = new AuthPresenter($stores.userStore);
 
-    let email = '';
-    let password = '';
-    let confirmPassword = '';
-    const onSubmit = () => presenter.submit(email, password, confirmPassword);
+	let email = '';
+	let password = '';
+	let confirmPassword = '';
+	const onSubmit = () => presenter.submit(email, password, confirmPassword);
 
 </script>
 
-<div class="out-wrapper">
-    <div class='wrapper'>
-        <h1 class='title'>Welcome to FIT-BUDDY !</h1>
-        <form class='auth-form' on:submit|preventDefault={onSubmit}>
-            <span class="input-field"><Textfield variant='outlined' bind:value={email} label='E-mail'/></span>
-            <span class="input-field"><Textfield variant='outlined' bind:value={password} label='Password'
-                                                 type='password'/></span>
-            {#if $presenter.isSignUp}
-            <span class="input-field"><Textfield variant='outlined' bind:value={confirmPassword}
-                                                 label='Confirm Password' type='password'/></span>
-            {/if}
+<div class='out-wrapper'>
+	<div class='wrapper'>
+		<h1 class='title'>Welcome to FIT-BUDDY !</h1>
+		<form class='auth-form' on:submit|preventDefault={onSubmit}>
+			<span class='input-field'><Textfield variant='outlined' bind:value={email} label='E-mail' /></span>
+			<span class='input-field'><Textfield variant='outlined' bind:value={password} label='Password'
+												 type='password' /></span>
+			{#if $presenter.isSignUp}
+            <span class='input-field'><Textfield variant='outlined' bind:value={confirmPassword}
+												 label='Confirm Password' type='password' /></span>
+			{/if}
 
-            <span class="w-submit-button"><span class="submit-button"><Button variant='unelevated'>
+			<span class='w-submit-button'><span class='submit-button'><Button variant='unelevated'>
             <Label>SUBMIT</Label>
         </Button></span></span>
-        </form>
-    </div>
+		</form>
+	</div>
 
-    <div class='switch-context'>
-        <p>{$presenter.switchContextMessage} </p>
-        <Button class='switch-context-button' ripple={false}
-                on:click={presenter.switchContext}>{$presenter.switchContextButtonText}</Button>
-    </div>
+	<div class='switch-context'>
+		<p>{$presenter.switchContextMessage} </p>
+		<Button class='switch-context-button' ripple={false}
+				on:click={presenter.switchContext}>{$presenter.switchContextButtonText}</Button>
+	</div>
 
 </div>
 

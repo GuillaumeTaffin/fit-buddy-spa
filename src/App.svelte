@@ -1,22 +1,27 @@
 <main>
-    <div class="toto">
-        {#if $user}
-            <Textfield class="p-8" variant='outlined' bind:value={email} label='E-mail'/>
-        {:else}
-            <AuthPage/>
-        {/if}
-    </div>
+	<div class='toto'>
+		{#if $user.authenticated}
+			<Textfield class='p-8' variant='outlined' bind:value={email} label='E-mail' />
+		{:else}
+			<AuthPage />
+		{/if}
+	</div>
 </main>
 
-<script lang="ts">
-    import "../node_modules/svelte-material-ui/bare.css";
-    import AuthPage from "./auth/AuthPage.svelte";
-    import {userStore} from "./auth/user.store";
-    import Textfield from '@smui/textfield';
+<script lang='ts'>
+	import '../node_modules/svelte-material-ui/bare.css';
+	import AuthPage from './auth/AuthPage.svelte';
+	import Textfield from '@smui/textfield';
+	import { Externals, Stores, storesKey } from './stores';
+	import { setContext } from 'svelte';
 
-    let user = userStore;
+	export let externals: Externals;
+	let stores = new Stores(externals);
+	setContext(storesKey, stores);
 
-    let email = '';
+	let user = $stores.userStore;
+
+	let email = '';
 </script>
 
 
