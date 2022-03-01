@@ -1,12 +1,12 @@
-import { UserDao } from '../../src/lib/auth/user';
-import type { AuthDataSource } from '../../src/lib/auth/auth.data-source';
-import { AuthRepositoryImpl } from '../../src/lib/auth/auth.repository';
+import { UserDao } from '../../../src/auth/user';
+import type { AuthDataSource } from '../../../src/auth/auth.data-source';
+import { AuthRepositoryImpl } from '../../../src/auth/auth.repository';
 
 describe('should call data source', () => {
 	let dataSource: AuthDataSource;
-	let fakeCurrentUser;
-	let fakeSignIn;
-	let fakeSignUp;
+	let fakeCurrentUser: jest.Mock;
+	let fakeSignIn: jest.Mock;
+	let fakeSignUp: jest.Mock;
 
 	beforeEach(() => {
 		fakeCurrentUser = jest.fn(() => new UserDao('id'));
