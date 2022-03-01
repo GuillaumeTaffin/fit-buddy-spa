@@ -8,6 +8,8 @@
     "start": "sirv public --single",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest",
+    "test:unit": "jest test/unit",
+    "test:acceptance": "jest test/acceptance",
     "test:watch": "npm test -- --watch"
   },
   "devDependencies": {
