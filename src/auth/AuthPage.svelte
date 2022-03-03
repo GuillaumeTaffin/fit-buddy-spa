@@ -47,6 +47,7 @@
         @apply flex flex-col;
         @apply h-full;
         @apply p-2;
+        @apply w-full max-w-xl;
     }
 
     .wrapper {
