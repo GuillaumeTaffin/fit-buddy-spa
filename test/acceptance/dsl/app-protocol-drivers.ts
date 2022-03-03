@@ -10,7 +10,7 @@ export class AppProtocolDrivers {
 	private readonly externals: Externals = new Externals(this.authDataSource);
 	private readonly app = render(App, { props: { externals: this.externals } });
 
-	async signUp(email: string, password: string) {
+	async signIn(email: string, password: string) {
 		const emailInput = this.app.getByLabelText('E-mail');
 		const passwordInput = this.app.getByLabelText('Password');
 		const submitButton = this.app.getByText('SUBMIT');
