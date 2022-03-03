@@ -24,7 +24,7 @@
 
     .title {
         @apply text-xl font-bold tracking-wider;
-        @apply ml-5;
+        @apply ml-4;
     }
 
     .body {
