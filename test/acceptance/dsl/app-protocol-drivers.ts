@@ -31,8 +31,6 @@ export class AppProtocolDrivers {
 		await fireEvent.input(emailInput, { target: { value: email } });
 		await fireEvent.input(passwordInput, { target: { value: password } });
 		await fireEvent.click(submitButton);
-
-		await new Promise((f) => setTimeout(f, 500));
 	}
 
 	async goToWorkouts() {}

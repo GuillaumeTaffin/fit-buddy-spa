@@ -54,7 +54,8 @@
 
     .body {
         @apply flex-grow;
-        @apply flex flex-col-reverse md:flex-row;
+        @apply flex flex-col-reverse;
+        @apply md:flex-row;
     }
 
     .action-bar {
