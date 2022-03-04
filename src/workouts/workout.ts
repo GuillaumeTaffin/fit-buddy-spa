@@ -9,13 +9,13 @@ export class Workout {
 export type WorkoutDao = {
 	id: number;
 	title: string;
-	training_at: Date;
+	training_at: string;
 };
 
 export function workoutDao(id: number, title: string, training_at: Date): WorkoutDao {
 	return {
 		id,
 		title,
-		training_at,
+		training_at: training_at.toLocaleString(),
 	};
 }

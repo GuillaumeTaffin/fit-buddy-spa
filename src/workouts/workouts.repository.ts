@@ -6,7 +6,7 @@ export class WorkoutsRepository {
 
 	async getAllWorkouts(): Promise<Workout[]> {
 		return (await this.dataSource.getAllWorkouts()).map(
-			(it) => new Workout(it.id, it.title, it.training_at),
+			(it) => new Workout(it.id, it.title, new Date(it.training_at)),
 		);
 	}
 }
