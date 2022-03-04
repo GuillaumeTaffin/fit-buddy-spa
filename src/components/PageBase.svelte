@@ -13,7 +13,7 @@
 
 <style>
     .page {
-        @apply flex flex-col h-full w-full;
+        @apply flex flex-col h-full w-full max-h-full;
     }
 
     .navbar {
@@ -23,8 +23,8 @@
     }
 
     .title {
-        @apply text-xl font-bold tracking-wider;
-        @apply ml-5;
+        @apply text-lg font-thin tracking-wider;
+        @apply ml-4;
     }
 
     .body {
