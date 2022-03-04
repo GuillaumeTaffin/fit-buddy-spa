@@ -1,6 +1,6 @@
 <main>
 	{#if $user.authenticated}
-		<PageBase />
+		<WorkoutsPage />
 	{:else}
 		<AuthPage />
 	{/if}
@@ -11,7 +11,7 @@
 	import AuthPage from './auth/AuthPage.svelte';
 	import { Externals, Stores, storesKey } from './stores';
 	import { setContext } from 'svelte';
-	import PageBase from './components/PageBase.svelte';
+	import WorkoutsPage from './workouts/WorkoutsPage.svelte';
 
 	export let externals: Externals;
 	let stores = new Stores(externals);

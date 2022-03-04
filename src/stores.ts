@@ -6,6 +6,11 @@ import { AuthDataSourceSupabase } from './auth/auth.data-source';
 import { AuthService } from './auth/auth.service';
 import { AuthRepositoryImpl } from './auth/auth.repository';
 import type { Subscriber, Unsubscriber } from 'svelte/types/runtime/store';
+import { WorkoutsStore } from './workouts/workouts.store';
+import type { WorkoutsDataSource } from './workouts/workouts.data-source';
+import { WorkoutsSupabase } from './workouts/workouts.data-source';
+import { WorkoutsService } from './workouts/workouts.service';
+import { WorkoutsRepository } from './workouts/workouts.repository';
 
 export class Stores {
 	private readonly stores: Writable<AllStores>;
@@ -14,6 +19,9 @@ export class Stores {
 		this.stores = writable({
 			userStore: new UserStore(
 				new AuthService(new AuthRepositoryImpl(externals.authDataSource)),
+			),
+			workoutsStore: new WorkoutsStore(
+				new WorkoutsService(new WorkoutsRepository(externals.workoutsDataSource)),
 			),
 		});
 	}
@@ -26,11 +34,18 @@ export class Stores {
 export const storesKey = Symbol();
 
 export class Externals {
-	constructor(readonly authDataSource: AuthDataSource) {}
+	constructor(
+		readonly authDataSource: AuthDataSource,
+		readonly workoutsDataSource: WorkoutsDataSource,
+	) {}
 }
 
-export const defaultExternals: Externals = new Externals(new AuthDataSourceSupabase());
+export const defaultExternals: Externals = new Externals(
+	new AuthDataSourceSupabase(),
+	new WorkoutsSupabase(),
+);
 
 interface AllStores {
 	userStore: UserStore;
+	workoutsStore: WorkoutsStore;
 }
